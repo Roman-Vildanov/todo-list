@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../Redux/store';
 import { addTodo, toggleTodo, deleteTodo, filterTodos } from '../Redux/actions';
 
+import Button from '@mui/material/Button';
+
 const TodoList: React.FC = () => {
   const [inputValue, setInputValue] = useState('');
   const dispatch = useDispatch();
@@ -33,14 +35,14 @@ const TodoList: React.FC = () => {
 
   return (
     <div>
-        <input
+      <input type="text" value={inputValue} onChange={handleInputChange} />
+      <Button onClick={handleAddTodo}>Add Todo</Button>
+      <br />
+      <input
         type="text"
         placeholder="Search Todos"
         onChange={handleFilterTodos}
       />
-      <br />
-      <input type="text" value={inputValue} onChange={handleInputChange} />
-      <button onClick={handleAddTodo}>Add Todo</button>      
       <ul>
         {todos.map(todo => (
           <li key={todo.id}>
